@@ -5,11 +5,23 @@ dotenv.config();
 
 let pool;
 
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+// ... (keep the existing dotenv and mysql imports)
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 if (process.env.DATABASE_URL) {
   // Production configuration (using PlanetScale)
+  const caCertPath = path.resolve(__dirname, 'cacert.pem');
   pool = mysql.createPool({
     uri: process.env.DATABASE_URL,
-    ssl: { rejectUnauthorized: true },
+    ssl: { 
+      ca: fs.readFileSync(caCertPath), 
+    },
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0
