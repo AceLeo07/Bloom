@@ -19,9 +19,7 @@ if (process.env.DATABASE_URL) {
   const caCertPath = path.resolve(__dirname, '../cacert.pem');
   pool = mysql.createPool({
     uri: process.env.DATABASE_URL,
-    ssl: { 
-      ca: fs.readFileSync(caCertPath), 
-    },
+    ssl: { rejectUnauthorized: false },
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0
