@@ -16,7 +16,7 @@ const __dirname = path.dirname(__filename);
 
 if (process.env.DATABASE_URL) {
   // Production configuration (using PlanetScale)
-  const caCertPath = path.resolve(__dirname, 'cacert.pem');
+  const caCertPath = path.resolve(__dirname, '../cacert.pem');
   pool = mysql.createPool({
     uri: process.env.DATABASE_URL,
     ssl: { 
