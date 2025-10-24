@@ -81,6 +81,14 @@ export default function AuthPage() {
                 className="w-full px-4 py-3 rounded-xl border border-gray-300 text-black focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition"
                 placeholder="••••••••"
               />
+              {mode === 'signup' && (
+                <ul className="text-xs text-gray-500 mt-2 list-disc list-inside">
+                  <li>At least 6 characters</li>
+                  <li>One lowercase letter</li>
+                  <li>One uppercase letter</li>
+                  <li>One number</li>
+                </ul>
+              )}
             </div>
 
             <button
